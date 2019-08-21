@@ -4,7 +4,7 @@ const app = express();
 app.use(express.static('public'));
 
 app.get('/', (req, res, nexxt) => {  
-  res.send(`<h1>Home</h1><h3>Isn't this Homepage awesome?</h3><br><a href='/this-page'>Go to the other page</a><h2>Or maybe you want to see a really cool <a href='/cat'>cat page</a></h2>`);
+  res.sendFile(__dirname + '/views/home-page.html');
 });
 
 app.get('/this-page', (req, res, next) => {
@@ -12,21 +12,7 @@ app.get('/this-page', (req, res, next) => {
 });
 
 app.get('/cat', (req, res, next) => {
-  res.send(`
-    <!doctype html>
-    <html>
-      <head>
-        <meta charset="utf-8">
-        <title>Cat</title>
-        <link rel="stylesheet" href="/stylesheets/style.css" />
-      </head>
-      <body>
-        <h1>Cat</h1>
-        <p><a href='/'>Home</a></p>
-        <img src="/images/cool-cat.jpg" />
-      </body>
-    </html>
-  `)
+  res.sendFile(__dirname + '/views/cat-page.html')
 });
 
 app.listen(3000, () => {
